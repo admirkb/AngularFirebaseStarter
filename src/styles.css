@@ -1,17 +1,22 @@
 body {
-    background-color:#EBEBEB;
-    padding-top: 5em;
+    background-color:white;
+    /*padding-top: 5em;*/
 }
 * {
     font-family: 'Raleway';
 }
+
+.data{
+    color:black;
+}
+
 button {
-    background:#008FEF;
+    background:red;
     color:white;
-    padding: 1.2em;
-    width:300px;
+    padding: .1em;
+    width:100px;
     text-align:center;
-    font-size:1.2em;
-    margin-bottom: 30px;
+    font-size:1.0em;
+    margin-bottom: 0px;
     cursor:pointer;
 }

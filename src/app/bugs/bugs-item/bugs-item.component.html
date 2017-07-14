@@ -1,0 +1,138 @@
+<!--use of *ngIf else-->
+<div *ngIf="bug.isEditable; then showInputs else showLabels"></div>
+<ng-template #showInputs>
+
+    <table #t1 style="width:100%;" class="data">
+        <tr *ngIf="index == 0">
+            <th style="text-align:left;color:Black;">Problem</th>
+            <th style="text-align:left;color:Black;">Response</th>
+            <th style="text-align:left;color:Black;">Date Created</th>
+            <th style="text-align:left;color:Black;">Date Answered</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        <tr *ngIf="currentUid == bug.currentUid">
+
+            <td style="width:150px;" [style.background]="transparent">
+                <input style="width:100%;color:black" [(ngModel)]="bug.problem" />
+            </td>
+            <td style="width:150px;" [style.background]="transparent">
+                <input style="width:100%;color:black" [(ngModel)]="bug.response" />
+            </td>
+
+            <!-- Bug @ 15/7/2016 - Internet explorer and edge can handle {{bug.dateResolved | date:'dd/MM/yyyy @ HH:mm'}} -->
+            <td style="width:130px;" [style.background]="transparent">
+                <div style="width:100%;white-space:nowrap;overflow-x:hidden;">{{bug.dateCreated | date:"dd/MM/yyyy @ HH:mm"}} </div>
+            </td>
+            <td style="width:130px;" [style.background]="transparent">
+                <div style="width:100%; min-width:130px;white-space:nowrap;overflow-x:hidden;">{{bug.dateResolved | date:'dd/MM/yyyy @ HH:mm'}}</div>
+            </td>
+            <td style="width:5%" [style.background]="transparent">
+                <button class="btn btn-primary btn-xs" (click)="updateBug(bug)">Update</button>
+            </td>
+            <td style="width:5%" [style.background]="transparent">
+                <button class="btn btn-primary btn-xs" (click)="cancelBug(bug, key)">Cancel</button>
+            </td>
+
+        </tr>
+
+        <tr *ngIf="currentUid != bug.currentUid">
+            <td style="width:150px;" [style.background]="bug.editColor">
+                <input *ngIf="bug.isEditable" style="width:100%;color:black;text-decoration:line-through;" [(ngModel)]="bug.problem" [disabled]="bug.isDisabled == null ? false : bug.isDisabled"
+                />
+            </td>
+
+
+            <td style="width:150px;" [style.background]="bug.editColor">
+                <input *ngIf="bug.isEditable" style="width:100%;color:black;text-decoration:line-through;" [(ngModel)]="bug.response" [disabled]="bug.isDisabled == null ? false : bug.isDisabled"
+                />
+            </td>
+
+            <!-- Bug @ 15/7/2016 - Internet explorer and edge can handle {{bug.dateResolved | date:'dd/MM/yyyy @ HH:mm'}} -->
+            <td style="width:130px;" [style.background]="bug.editColor">
+                <div style="width:100%;white-space:nowrap;overflow-x:hidden;">{{bug.dateCreated | date:"dd/MM/yyyy @ HH:mm"}} </div>
+            </td>
+            <td style="width:130px;" [style.background]="bug.editColor">
+                <div style="width:100%; min-width:130px;white-space:nowrap;overflow-x:hidden;">{{bug.dateResolved | date:'dd/MM/yyyy @ HH:mm'}}</div>
+            </td>
+            <td style="width:5%" [style.background]="bug.editColor">
+                <button class="btn btn-primary btn-xs" [disabled]="bug.isDisabled == null ? false : bug.isDisabled" (click)="updateBug(bug)"
+                    *ngIf="bug.isEditable">Update</button>
+            </td>
+            <td style="width:5%" [style.background]="bug.editColor">
+                <button class="btn btn-primary btn-xs" [disabled]="bug.isDisabled == null ? false : bug.isDisabled" (click)="cancelBug(bug, key)"
+                    *ngIf="bug.isEditable">Cancel</button>
+            </td>
+
+        </tr>
+    </table>
+
+
+
+</ng-template>
+<ng-template #showLabels>
+    <table #t2 style="width:100%;" class="data">
+        <tr *ngIf="index == 0">
+            <th style="text-align:left;color:Black;">Problem</th>
+            <th style="text-align:left;color:Black;">Response</th>
+            <th style="text-align:left;color:Black;">Date Created</th>
+            <th style="text-align:left;color:Black;">Date Answered</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td style="width:150px;" [style.background]="bug.editColor">
+                <div class="adtooltip">
+                    <div id="myDiv{{index}}" *ngIf="!bug.isEditable" style="width:150px;white-space:nowrap; overflow:hidden;">{{bug.problem}}</div>
+                </div>
+            </td>
+
+
+            <td style="width:150px;" [style.background]="bug.editColor">
+                <div class="adtooltip">
+                    <div *ngIf="!bug.isEditable" style="width:150px;white-space:nowrap; overflow:hidden;">{{bug.response}}</div>
+                </div>
+            </td>
+
+            <!-- Bug @ 15/7/2016 - Internet explorer and edge can handle {{bug.dateResolved | date:'dd/MM/yyyy @ HH:mm'}} -->
+            <td style="width:130px;" [style.background]="bug.editColor">
+                <div style="width:100%;white-space:nowrap;overflow-x:hidden;">{{bug.dateCreated | date:"dd/MM/yyyy @ HH:mm"}} </div>
+            </td>
+            <td style="width:130px; min-width:130px;" [style.background]="bug.editColor">
+                <div style="width:100%;white-space:nowrap;overflow-x:hidden;">{{bug.dateResolved | date:'dd/MM/yyyy @ HH:mm'}}</div>
+            </td>
+            <td style="width:5%" [style.background]="bug.editColor">
+                <button class="btn btn-primary btn-xs" [disabled]="bug.isDisabled == null ? false : bug.isDisabled" (click)="editBug(bug)"
+                    *ngIf="!bug.isEditable">Edit</button>
+            </td>
+            <td style="width:5%" [style.background]="bug.editColor">
+                <button class="btn btn-primary btn-xs" [disabled]="bug.isDisabled == null ? false : bug.isDisabled" (click)="deleteBug(bug)"
+                    *ngIf="!bug.isEditable">Delete</button>
+            </td>
+
+            <!--<td>
+        <button (click)="setBug(bug)">Inside.submit(bug)</button>
+    </td>-->
+
+        </tr>
+    </table>
+</ng-template>
+
+<!-- <button (click)="ClickIt()">ClickIt</button> -->
+<!--<ul>
+    <li>Spanish
+      <ol>
+        <li>uno</li>
+        <li>dos</li>
+        <li>tres</li>
+      </ol>
+    </li>
+    <li>Japanese
+      <ol>
+        <li>ichi</li>
+        <li>ni</li>
+        <li>san</li>
+      </ol>      
+    </li>
+  </ul>-->

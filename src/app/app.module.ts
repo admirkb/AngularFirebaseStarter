@@ -11,6 +11,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+
+import { BugsModule } from './bugs/bugs.module';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyDUV-7kJOtK2g_55KiPqVFvuAVH5cWje9g",
   authDomain: "polymer1-aa9b0.firebaseapp.com",
@@ -30,8 +33,10 @@ export const firebaseConfig = {
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BugsModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

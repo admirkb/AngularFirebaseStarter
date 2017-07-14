@@ -1,0 +1,16 @@
+<form (ngSubmit)="onSubmit($event)" [formGroup]="form">
+
+  <div layout-gt-sm="row">
+
+    <label class="copy1">New Problem: </label>
+    <input formControlName="problem" placeholder="Problem" style="color:black;"  required/>
+
+    
+
+    <button type="submit" class="btn btn-primary btn-sm">Create</button>
+
+
+  </div>
+
+
+</form>

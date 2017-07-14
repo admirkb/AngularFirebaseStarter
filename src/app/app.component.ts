@@ -17,8 +17,8 @@ export class AppComponent {
   msgVal: string = '';
 
 
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-    this.items = af.list('/messages', {
+  constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase) {
+    this.items = db.list('/messages', {
       query: {
         limitToLast: 50
       }
@@ -37,7 +37,36 @@ export class AppComponent {
   }
 
   Send(desc: string) {
-    this.items.push({ message: desc });
+    this.items.push({ message: desc, problem: desc })
+      .catch(error => this.handleError(error))
+
     this.msgVal = '';
+  }
+
+  Info(e: any, x: any) {
+    console.dir(e)
+    console.dir(x)
+  }
+  updateItem(key: string, problem: any): void {
+
+    this.items.update(key, { problem: problem })
+      .catch(error => this.handleError(error))
+
+    // let updates = {};
+    // updates['/messages/' + key  ] = { problem: problem };
+    // firebase.database().ref().update(updates);
+  }
+
+  deleteItem(key: string): void {
+    this.items.remove(key)
+      .catch(error => this.handleError(error))
+  }
+
+  deleteAll(): void {
+    this.items.remove()
+      .catch(error => this.handleError(error))
+  }
+  private handleError(error) {
+    console.log(error)
   }
 }
