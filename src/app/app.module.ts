@@ -15,12 +15,12 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { BugsModule } from './bugs/bugs.module';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyDUV-7kJOtK2g_55KiPqVFvuAVH5cWje9g",
-  authDomain: "polymer1-aa9b0.firebaseapp.com",
-  databaseURL: "https://polymer1-aa9b0.firebaseio.com",
-  projectId: "polymer1-aa9b0",
-  storageBucket: "polymer1-aa9b0.appspot.com",
-  messagingSenderId: "250528261093"
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: ""
 };
 
 @NgModule({
