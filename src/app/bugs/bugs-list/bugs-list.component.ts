@@ -143,14 +143,14 @@ export class BugsListComponent implements OnInit {
 
   newBug(bug: any) {
 
-    bug.dateCreated = bug.dateCreated.getTime();
+    bug.dateCreated = new Date().getTime();
     bug.response = ''
     bug.dateResolved = '';
     bug.isDisabled = '';
     bug.origResponse = '';
     bug.origProblem = '';
     bug.editColor = 'transparent';
-    bug.currentUid = '';
+    bug.currentUid = this.currentUid;
 
 
 

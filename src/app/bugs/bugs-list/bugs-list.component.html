@@ -1,6 +1,9 @@
 <h1 style="color:black;">
     justbugs and Firebase</h1>
-<!-- <h1>{{(user | async)?.uid}}</h1> -->
+ <h1>{{(user | async)?.uid}}</h1> 
+<h1>{{(user | async)?.displayName}}</h1> 
+
+ 
 
 <div *ngFor="let bug of bugs| async; let i = index">
     <bugs-item (itemEditEvent)="itemEditEvent($event)" (itemCancelEvent)="itemCancelEvent($event)" (itemUpdateEvent)="itemUpdateEvent($event)"

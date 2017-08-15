@@ -4,6 +4,11 @@
 <!-- <h1>{{(user | async)?.uid}}</h1> -->
 <div class="row columns">
   <button (click)="login()" *ngIf="!(user | async)?.uid">Anonymous Login</button>
+  <button (click)="loginGoogle()" *ngIf="!(user | async)?.uid">Google</button>
+  <button (click)="loginFacebook()" *ngIf="!(user | async)?.uid">Facebook</button>
+  <button (click)="loginGithub()" *ngIf="!(user | async)?.uid">Github</button>
+  <button (click)="loginTwitter()" *ngIf="!(user | async)?.uid">Twitter</button>
+  <button (click)="loginEmail()" *ngIf="!(user | async)?.uid">Email</button>
   <button (click)="logout()" *ngIf="(user | async)?.uid">Logout</button>
 
 
